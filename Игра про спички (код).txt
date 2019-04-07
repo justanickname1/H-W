@@ -1,0 +1,148 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp18
+{
+    class Program
+    {
+        static public void rules()
+        {
+            Console.WriteLine("There are 21 matches"+ "\nIn one turn you can pull no more then 4 matches"+ "\nThe one who pulls last one looses the game.");
+        }
+        static public void PlPullsSecond(int matches = 21, int player = 0)
+        {
+            while (matches != 0)
+            {
+                int computer;
+                Random rd = new Random();
+                if (matches >= 4)
+                {
+                    computer = rd.Next(1, 4);
+                }
+                else
+                {
+                    computer = rd.Next(1, matches);
+                }
+                if (computer != 1)
+                {
+                    Console.WriteLine($"Computer pulled {computer} matches");
+                }
+                else
+                {
+                    Console.WriteLine($"Computer pulled {computer} match");
+                }
+                if (matches - computer <= 0)
+                {
+                    Console.WriteLine("Player wins");
+                    break;
+                }
+                matches -= computer;
+                Console.WriteLine($"{matches} remaining");
+                do
+                {
+                    player = Convert.ToInt32(Console.ReadLine());
+                    if (player > 4)
+                    {
+                        Console.WriteLine("You can pull no more than 4 matches per turn" + "\nTry again");
+                    }
+                }
+                while (player > 4);
+                if (player != 1)
+                {
+                    Console.WriteLine($"Player pulled {player} matches");
+                }
+                else
+                {
+                    Console.WriteLine($"Player pulled {player} match");
+                }
+                if (matches - player <= 0)
+                {
+                    Console.WriteLine("Computer wins");
+                    break;
+                }
+                matches -= player;
+                Console.WriteLine($"{matches} remaining");
+            }
+        }
+        static public void PlPullsFirst(int matches = 21, int player = 0)
+        {
+            while (matches != 0)
+            {
+                int computer;
+                Random rd = new Random();
+                do
+                {
+                    player = Convert.ToInt32(Console.ReadLine());
+                    if (player > 4)
+                    {
+                        Console.WriteLine("You can pull no more than 4 matches per turn" + "\nTry again");
+                    }
+                }
+                while (player > 4);
+                if (player != 1)
+                {
+                    Console.WriteLine($"Player pulled {player} matches");
+                }
+                else
+                {
+                    Console.WriteLine($"Player pulled {player} match");
+                }
+                if (matches - player <= 0)
+                {
+                    Console.WriteLine("Computer wins");
+                    break;
+                }
+                matches -= player;
+                Console.WriteLine($"{matches} remaining");
+                if (matches >= 4)
+                {
+                    computer = rd.Next(1, 4);
+                }
+                else
+                {
+                    computer = rd.Next(1, matches);
+                }
+                if (computer != 1)
+                {
+                    Console.WriteLine($"Computer pulled {computer} matches");
+                }
+                else
+                {
+                    Console.WriteLine($"Computer pulled {computer} match");
+                }
+                if (matches - computer <= 0)
+                {
+                    Console.WriteLine("Player wins");
+                    break;
+                }
+                matches -= computer;
+                Console.WriteLine($"{matches} remaining");
+            }
+        }
+        static public void game()
+        {
+            Random rand = new Random();
+            int roll = rand.Next(1, 4);
+            rules();
+            if(roll <= 2)
+            {
+                Console.WriteLine("You pull first");
+                PlPullsFirst();
+            }
+            else if(roll > 2)
+            {
+                Console.WriteLine("Computer pulls first");
+
+                PlPullsSecond();
+            }
+        }
+        static void Main(string[] args)
+        {
+            game();
+            Console.ReadKey();
+        }
+    }
+}
