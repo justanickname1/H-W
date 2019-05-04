@@ -1,0 +1,129 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp69
+{
+    class Student
+    {
+        public string name;
+        public int grade;
+        public string forename;
+        public float averageMark;
+        public int[] math = new int[5];
+        public string AlternativeClasses;
+        public Student(string name, string forename, int grade, string AlternativeClasses, int[] math, float averageMark)
+        {
+            for (int i = 0; i < this.math.Length; i++)
+            {
+                this.math[i] = math[i];
+            }
+            this.name = name;
+            this.forename = forename;
+            this.grade = grade;
+            this.AlternativeClasses = AlternativeClasses;
+            this.averageMark = averageMark;
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Random rand = new Random();
+            int[] marksarray = new int[5];
+            string[] names = { "Dmitriy", "Daniil", "Stas", "Valeriy", "Anton", "Oleg" };
+            string[] forenames = { "Soloviev", "Moskovskiy", "Mylnikov", "Gajiev", "Nagaev" };
+            string[] alternativeClasses = {"English", "Math", "Deutstch" };
+            Student[] studentArray = new Student[10];
+            //studentArray[0] = new Student("Stas", "Mylnikov", 9, "Math",new int[] { 5, 5, 5, 5 } );
+            for (int j = 0; j < studentArray.Length; j++)
+            {
+                int gradeRandom = rand.Next(1, 12);
+                int nameRandom = rand.Next(0, 6);
+                int forenameRandom = rand.Next(0, 5);
+                int alternativeClassesRandom = rand.Next(0, 3);
+                float averageMark = 0;
+                for (int k = 0; k < marksarray.Length; k++)
+                {
+                    int marks = rand.Next(2, 6);
+                    marksarray[k] = marks;
+                    averageMark += marksarray[k];
+                }
+                float finalAverageMark = averageMark / 5;
+                if(finalAverageMark >= 2.6)
+                {
+                    finalAverageMark = 3;
+                }
+                else
+                {
+                    finalAverageMark = 2;
+                }
+
+                if (finalAverageMark >= 3.6)
+                {
+                    finalAverageMark = 4;
+                }
+                else
+                {
+                    finalAverageMark = 3;
+                }
+
+                if (finalAverageMark >= 4.6)
+                {
+                    finalAverageMark = 5;
+                }
+                else
+                {
+                    finalAverageMark = 4;
+                }
+                studentArray[j] = new Student(names[nameRandom], forenames[forenameRandom], gradeRandom, alternativeClasses[alternativeClassesRandom], marksarray, finalAverageMark);
+                Console.WriteLine($"Student[{j}]");
+                Console.WriteLine($"Name: {studentArray[j].name}");
+                Console.WriteLine($"Forename: {studentArray[j].forename}");
+                Console.WriteLine($"Grade: {studentArray[j].grade}");
+                Console.WriteLine($"Alternative Classes: {studentArray[j].AlternativeClasses}");
+                Console.Write($"Marks: ");
+                for (int l = 0; l < 5; l++)
+                {
+                    
+                    Console.Write(studentArray[j].math[l]);
+                    if(l < 4)
+                    {
+                        Console.Write(", ");
+                    }
+                }
+                Console.WriteLine(" ");
+                Console.WriteLine("-------------------------------");
+            }
+            while (true)
+            {
+                Console.WriteLine("Student with average mark ");
+                int n = Convert.ToInt32(Console.ReadLine());
+                for (int h = 0; h < studentArray.Length; h++)
+                {
+                    if (studentArray[h].averageMark == n)
+                    {
+                        Console.WriteLine($"Name: {studentArray[h].name}");
+                        Console.WriteLine($"Forename: {studentArray[h].forename}");
+                        Console.WriteLine($"Grade: {studentArray[h].grade}");
+                        Console.WriteLine($"Alternative Classes: {studentArray[h].AlternativeClasses}");
+                        Console.WriteLine($"Average mark: {studentArray[h].averageMark}");
+                        Console.Write($"Marks: ");
+                        for (int t = 0; t < studentArray[h].math.Length; t++)
+                        {
+                            Console.Write(studentArray[h].math[t]);
+                            if (t < 4)
+                            {
+                                Console.Write(", ");
+                            }
+                        }
+                        Console.WriteLine(" ");
+                        Console.WriteLine("-------------------------------");
+                    }
+                }
+            }
+        }
+    }
+}
