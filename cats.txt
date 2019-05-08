@@ -1,0 +1,164 @@
+using  System;
+using System.IO;
+namespace ConsoleApplication3
+{
+    class Cats
+    {
+        public string name;
+        public string color;
+        public int age;
+        public string gender;
+        public string breed;
+        public Cats(string name, int age, string color, string gender, string breed)
+        {
+            this.name = name;
+            this.age = age;
+            this.color = color;
+            this.gender = gender;
+            this.breed = breed;
+        }
+    }
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            int arrayCounter = 50;
+            int catCounter = 0;
+            Cats[] catsArray = new Cats[arrayCounter];
+            while (true)
+            {
+                
+                Console.WriteLine("Choose action" + "\n1. Create new cat" + "\n2. Find cat by" + "\n3. Cats list");
+                byte actionChoise = Convert.ToByte(Console.ReadLine());
+                switch (actionChoise)
+                {
+                    case 1:
+                        Console.WriteLine("Enter cat's bio by order");
+                        Console.Write("Name: ");
+                        string name = Console.ReadLine();
+                        Console.Write("Age: ");
+                        int age = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Color: ");
+                        string color = Console.ReadLine();
+                        Console.Write("Gender: ");
+                        string gender = Console.ReadLine();
+                        Console.Write("Breed: ");
+                        string breed = Console.ReadLine();
+                        catsArray[catCounter] = new Cats(name, age, color, gender, breed);
+                        arrayCounter++;
+                        catCounter++;
+                        break;
+                    case 2:
+                        Console.WriteLine("Sort by");
+                        Console.WriteLine("1. Name"+"\n2. Age"+"\n3. Color"+"\n4. Gender"+"\n5. Breed");
+                        byte filter = Convert.ToByte(Console.ReadLine());
+                        switch (filter)
+                        {
+                            case 1:
+                                Console.WriteLine("Enter name you are searching for");
+                                string nameFilter = Console.ReadLine();
+                                Console.WriteLine($"Cats with name {nameFilter}");
+                                for (int i = 0; i < catsArray.Length; i++)
+                                {
+                                    if (nameFilter == catsArray[i].name)
+                                    {
+                                        Console.WriteLine($"Name: {catsArray[i].name}");
+                                        Console.WriteLine($"Age: {catsArray[i].age}");
+                                        Console.WriteLine($"Color: {catsArray[i].color}");
+                                        Console.WriteLine($"Gender: {catsArray[i].gender}");
+                                        Console.WriteLine($"Breed: {catsArray[i].breed}");
+                                        Console.WriteLine("--------------------------");
+                                    }
+                                }
+
+                                break;
+                            case 2:
+                                Console.WriteLine("Enter age you are searching for");
+                                int ageFilter = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine($"Cats with age {ageFilter}");
+                                for (int j = 0; j < catsArray.Length; j++)
+                                {
+                                    if (ageFilter == catsArray[j].age)
+                                    {
+                                        Console.WriteLine($"Name: {catsArray[j].name}");
+                                        Console.WriteLine($"Age: {catsArray[j].age}");
+                                        Console.WriteLine($"Color: {catsArray[j].color}");
+                                        Console.WriteLine($"Gender: {catsArray[j].gender}");
+                                        Console.WriteLine($"Breed: {catsArray[j].breed}");
+                                        Console.WriteLine("--------------------------");
+                                    }
+                                }
+                                break;
+                            case 3:
+                                Console.WriteLine("Enter color you are searching for");
+                                string colorFilter = Console.ReadLine();
+                                Console.WriteLine($"Cats with color {colorFilter}");
+                                for (int o = 0; o < catsArray.Length; o++)
+                                {
+                                    if (colorFilter == catsArray[o].color)
+                                    {
+                                        Console.WriteLine($"Name: {catsArray[o].name}");
+                                        Console.WriteLine($"Age: {catsArray[o].age}");
+                                        Console.WriteLine($"Color: {catsArray[o].color}");
+                                        Console.WriteLine($"Gender: {catsArray[o].gender}");
+                                        Console.WriteLine($"Breed: {catsArray[o].breed}");
+                                        Console.WriteLine("--------------------------");
+                                    }
+                                }
+                                break;
+                            case 4:
+                                Console.WriteLine("Enter gender you are searching for");
+                                string genderFilter = Console.ReadLine();
+                                Console.WriteLine($"All {genderFilter} cats");
+                                for (int f = 0; f < catsArray.Length; f++)
+                                {
+                                    if (genderFilter == catsArray[f].gender)
+                                    {
+                                        Console.WriteLine($"Name: {catsArray[f].name}");
+                                        Console.WriteLine($"Age: {catsArray[f].age}");
+                                        Console.WriteLine($"Color: {catsArray[f].color}");
+                                        Console.WriteLine($"Gender: {catsArray[f].gender}");
+                                        Console.WriteLine($"Breed: {catsArray[f].breed}");
+                                        Console.WriteLine("--------------------------");
+                                    }
+                                    
+                                }
+                                break;
+                            case 5:
+                                Console.WriteLine("Enter breed you are searching for");
+                                string breedFilter = Console.ReadLine();
+                                Console.WriteLine($"All {breedFilter} cats");
+                                for (int g = 0; g < catsArray.Length; g++)
+                                {
+                                    if (breedFilter == catsArray[g].breed)
+                                    {
+                                        Console.WriteLine($"Name: {catsArray[g].name}");
+                                        Console.WriteLine($"Age: {catsArray[g].age}");
+                                        Console.WriteLine($"Color: {catsArray[g].color}");
+                                        Console.WriteLine($"Gender: {catsArray[g].gender}");
+                                        Console.WriteLine($"Breed: {catsArray[g].breed}");
+                                        Console.WriteLine("--------------------------");
+                                    }
+                                }
+                                break;
+                        }
+
+                        break;
+                    case 3:
+                        Console.WriteLine("All cats:");
+                        for (int t = 0; t < catsArray.Length; t++)
+                        {
+                            Console.WriteLine($"Name: {catsArray[t].name}");
+                            Console.WriteLine($"Age: {catsArray[t].age}");
+                            Console.WriteLine($"Color: {catsArray[t].color}");
+                            Console.WriteLine($"Gender: {catsArray[t].gender}");
+                            Console.WriteLine($"Breed: {catsArray[t].breed}");
+                            Console.WriteLine("--------------------------");
+                        }
+                        break;
+                }
+            }
+        }
+    }
+}
+
